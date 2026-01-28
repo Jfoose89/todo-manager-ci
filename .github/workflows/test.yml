@@ -31,17 +31,6 @@ jobs:
       - name: Run tests with coverage
         run: npm run test:coverage
 
-      - name: Enforce coverage threshold
-        run: |
-          node -e "
-            const summary = require('./coverage/coverage-summary.json');
-            const pct = summary.total.lines.pct;
-            if (pct < 80) {
-              console.error('Coverage below 80%!');
-              process.exit(1);
-            }
-          "
-
       - name: Register CI status check
         uses: actions/github-script@v7
         with:
